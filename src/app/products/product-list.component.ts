@@ -16,7 +16,7 @@ export class ProductListComponent implements OnInit {
   private _listFilter: string;
 
   // dependency injection
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService) { }
 
   get listFilter(): string {
     return this._listFilter;
@@ -30,14 +30,20 @@ export class ProductListComponent implements OnInit {
 
   filteredProducts: IProduct[];
   products: IProduct[] = [];
+  errorMessage: string;
 
   toggleImage(): void {
     this.showImage = !this.showImage;
   }
 
   ngOnInit(): void {
-    this.products = this.productService.getProducts();
-    this.filteredProducts = this.products;
+    this.productService.getProducts().subscribe(
+      products => {
+        this.products = products;
+        this.filteredProducts = this.products;
+      },
+      error => this.errorMessage = <any>error
+    );
   }
 
   onRatingClicked(message: string): void {

@@ -3,10 +3,16 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'pm-root',
   template: `
-  <ul class='nav navbar-nav'>
-    <li><a>Home</a></li>
-    <li><a>Product List</a></li>
-  </ul>
+  <nav class = 'nav navbar-expand navbar-light bg-light'>
+    <a class = 'nav-brand'>{{pageTitle}}</a>
+      <ul class='nav navbar-pills'>
+        <li><a class= 'nav-link' [routerLink] = "['/welcome']">Home</a></li>
+        <li><a class = 'nav-link' [routerLink] = "['/products']">Product List</a></li>
+    </ul>
+  </nav>
+  <div class = 'container'>
+    <router-outlet></router-outlet>
+  </div>
   `
 })
 

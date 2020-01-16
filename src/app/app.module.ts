@@ -11,10 +11,11 @@ import { ProductDetailComponent } from './products/product-detail.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { RouterModule } from '@angular/router';
 import { ProductDetailGuard } from './products/product-detail.guard';
+import { DemoformComponent } from './form/demoform/demoform.component';
 
 @NgModule({
   declarations: [
-    AppComponent, ProductListComponent, ConvertToSpacePipe, StarComponent, ProductDetailComponent, WelcomeComponent
+    AppComponent, ProductListComponent, ConvertToSpacePipe, StarComponent, ProductDetailComponent, WelcomeComponent, DemoformComponent
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule, RouterModule.forRoot([
@@ -22,6 +23,7 @@ import { ProductDetailGuard } from './products/product-detail.guard';
       {path: 'products/:id',
         canActivate: [ProductDetailGuard],
         component: ProductDetailComponent},
+      {path: 'demoform', component: DemoformComponent},
       {path: 'welcome', component: WelcomeComponent},
       {path: '', redirectTo: 'welcome', pathMatch: 'full'},
       {path: '**', redirectTo: 'welcome', pathMatch: 'full'}

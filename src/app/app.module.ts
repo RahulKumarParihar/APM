@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -16,19 +16,22 @@ import { ReactiveDemoComponent } from './form/reactive-demo/reactive-demo.compon
 
 @NgModule({
   declarations: [
-    AppComponent, ProductListComponent, ConvertToSpacePipe, StarComponent, ProductDetailComponent, WelcomeComponent, DemoformComponent, ReactiveDemoComponent
+    AppComponent, ProductListComponent, ConvertToSpacePipe, StarComponent,
+    ProductDetailComponent, WelcomeComponent, DemoformComponent, ReactiveDemoComponent
   ],
   imports: [
-    BrowserModule, FormsModule, HttpClientModule, RouterModule.forRoot([
-      {path: 'products', component: ProductListComponent},
-      {path: 'products/:id',
+    BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule.forRoot([
+      { path: 'products', component: ProductListComponent },
+      {
+        path: 'products/:id',
         canActivate: [ProductDetailGuard],
-        component: ProductDetailComponent},
-      {path: 'demoform', component: DemoformComponent},
-      {path: 'reactiveform', component: ReactiveDemoComponent},
-      {path: 'welcome', component: WelcomeComponent},
-      {path: '', redirectTo: 'welcome', pathMatch: 'full'},
-      {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
+        component: ProductDetailComponent
+      },
+      { path: 'demoform', component: DemoformComponent },
+      { path: 'reactiveform', component: ReactiveDemoComponent },
+      { path: 'welcome', component: WelcomeComponent },
+      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+      { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
     ])
   ],
   bootstrap: [AppComponent]

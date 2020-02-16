@@ -14,6 +14,37 @@ export class ProductListComponent implements OnInit {
   // tslint:disable-next-line: variable-name
   private _listFilter: string;
 
+  /**
+   * fixing ngIf with viewchild undefined problem
+   * 
+   * @ViewChild('filterElement') filterElementRef: ElementRef;
+   * private _filterInput: NgModel;
+   * private _sub: Subscription;
+   * 
+   * get filterIntput(): NgModel {
+   *  return this._filterInput;
+   * }
+   * 
+   * @ViewChild(NgModel)
+   * set filterInput(value: NgModel) {
+   *  this._filterInput = value;
+   *  console.log(this.filterInput);
+   *  if(this.filterInput && !this._sub){
+   *    console.log('Subscribing');
+   *    _sub = this.filterInput.valueChanges.subscribe(
+   *      () => {
+   *        this.preformFilter(this.listFilter);
+   *        console.log('Peformed the filter');
+   *      }
+   *    );
+   *  }
+   *  if(this.filterElementRef){
+   *    this.filterElementRef.nativeElement.focus();
+   *  }
+   * }
+   * 
+   */
+
   // dependency injection
   constructor(private productService: ProductService) { }
 

@@ -42,12 +42,16 @@ export class ReactiveDemoComponent implements OnInit {
       emailGroup: this.fb.group({
         email: ['', [Validators.required, Validators.email]],
         confirmEmail: ['', Validators.required]
-      },{validators: emailMatcher}),
+      },{ validators: emailMatcher}),
       phone: '',
       notification: 'email',
       rating: [null, ratingRange(1, 5)],
       sendCatalog: false
     });
+
+    this.customerForm.get("notification").valueChanges.subscribe(
+      value => this.setNotification(value)
+    );
   }
 
   save() {

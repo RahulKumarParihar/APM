@@ -21,18 +21,18 @@ import { ReactiveDemoComponent } from './form/reactive-demo/reactive-demo.compon
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule.forRoot([
-      { path: 'products', component: ProductListComponent },
-      {
+    { path: 'products', component: ProductListComponent },
+    {
         path: 'products/:id',
         canActivate: [ProductDetailGuard],
         component: ProductDetailComponent
-      },
-      { path: 'demoform', component: DemoformComponent },
-      { path: 'reactiveform', component: ReactiveDemoComponent },
-      { path: 'welcome', component: WelcomeComponent },
-      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-      { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
-    ])
+    },
+    { path: 'demoform', component: DemoformComponent },
+    { path: 'reactiveform', component: ReactiveDemoComponent },
+    { path: 'welcome', component: WelcomeComponent },
+    { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+    { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
+], { relativeLinkResolution: 'legacy' })
   ],
   bootstrap: [AppComponent]
 })

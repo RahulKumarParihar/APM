@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { Customer } from "../customer";
-import { NgForm } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { Customer } from '../customer';
+import { NgForm } from '@angular/forms';
 
 @Component({
-  templateUrl: "./demoform.component.html",
-  styleUrls: ["./demoform.component.css"],
+  templateUrl: './demoform.component.html',
+  styleUrls: ['./demoform.component.css'],
 })
 export class DemoformComponent implements OnInit {
   customer = new Customer();
@@ -15,6 +15,6 @@ export class DemoformComponent implements OnInit {
 
   save(customerForm: NgForm) {
     console.log(customerForm.form);
-    console.log("Saved: " + customerForm.value);
+    console.log('Saved: ' + customerForm.value);
   }
 }

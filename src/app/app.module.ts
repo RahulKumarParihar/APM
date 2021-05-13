@@ -1,39 +1,42 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+
+// Imports for loading & configuring the in-memory web api
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { ProductData } from './products/product-data';
 
 import { AppComponent } from './app.component';
-import { ProductListComponent } from './products/product-list.component';
-import { ConvertToSpacePipe } from './shared/convert-to-space.pipe';
-import { StarComponent } from './shared/star.component';
-import { ProductDetailComponent } from './products/product-detail.component';
 import { WelcomeComponent } from './home/welcome.component';
-import { RouterModule } from '@angular/router';
-import { ProductDetailGuard } from './products/product-detail.guard';
-import { DemoformComponent } from './form/demoform/demoform.component';
-import { ReactiveDemoComponent } from './form/reactive-demo/reactive-demo.component';
+import { PageNotFoundComponent } from './page-not-found.component';
+
+/* Feature Modules */
+import { ProductModule } from './products/product.module';
+import { UserModule } from './user/user.module';
+import { MessageModule } from './messages/message.module';
 
 @NgModule({
   declarations: [
-    AppComponent, ProductListComponent, ConvertToSpacePipe, StarComponent,
-    ProductDetailComponent, WelcomeComponent, DemoformComponent, ReactiveDemoComponent
+    AppComponent,
+    WelcomeComponent,
   ],
   imports: [
-    BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule.forRoot([
-    { path: 'products', component: ProductListComponent },
-    {
-        path: 'products/:id',
-        canActivate: [ProductDetailGuard],
-        component: ProductDetailComponent
-    },
-    { path: 'demoform', component: DemoformComponent },
-    { path: 'reactiveform', component: ReactiveDemoComponent },
-    { path: 'welcome', component: WelcomeComponent },
-    { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-    { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
-], { relativeLinkResolution: 'legacy' })
+    BrowserModule,
+    HttpClientModule,
+    InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
+    RouterModule.forRoot(
+      [
+        { path: "welcome", component: WelcomeComponent },
+        { path: "", redirectTo: "welcome", pathMatch: "full" },
+        { path: "**", redirectTo: "welcome", pathMatch: "full" },
+      ],
+      { relativeLinkResolution: "legacy" }
+    ),
+    ProductModule,
+    UserModule,
+    MessageModule,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

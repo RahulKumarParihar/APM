@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from './product';
+import { Product } from './product';
 import { ProductService } from './product.service';
 
 @Component({
@@ -27,8 +27,8 @@ export class ProductListComponent implements OnInit {
       : this.products;
   }
 
-  filteredProducts: IProduct[];
-  products: IProduct[] = [];
+  filteredProducts: Product[];
+  products: Product[] = [];
   errorMessage: string;
 
   toggleImage(): void {
@@ -49,10 +49,10 @@ export class ProductListComponent implements OnInit {
     this.pageTitle = 'Product List: ' + message;
   }
 
-  performFilter(filterBy: string): IProduct[] {
+  performFilter(filterBy: string): Product[] {
     filterBy = filterBy.toLocaleLowerCase();
     return this.products.filter(
-      (product: IProduct) =>
+      (product: Product) =>
         product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1
     );
   }

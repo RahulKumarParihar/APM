@@ -1,23 +1,30 @@
 import { Component } from '@angular/core';
 
+import { AuthService } from './user/auth.service';
+
 @Component({
   selector: 'pm-root',
-  template: `
-  <nav class = 'nav navbar-expand navbar-light bg-light'>
-    <a class = 'nav-brand'>{{pageTitle}}</a>
-      <ul class='nav navbar-pills'>
-        <li><a class= 'nav-link' [routerLink] = "['/welcome']">Home</a></li>
-        <li><a class = 'nav-link' [routerLink] = "['/products']">Product List</a></li>
-        <li><a class = 'nav-link' [routerLink] = "['/demoform']">Demo Form</a></li>
-        <li><a class = 'nav-link' [routerLink] = "['/reactiveform']">Reactive Form</a></li>
-    </ul>
-  </nav>
-  <div class = 'container'>
-    <router-outlet></router-outlet>
-  </div>
-  `
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-
 export class AppComponent {
   pageTitle = 'Acme Product Management';
+
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn;
+  }
+
+  get userName(): string {
+    if (this.authService.currentUser) {
+      return this.authService.currentUser.userName;
+    }
+    return '';
+  }
+
+  constructor(private authService: AuthService) { }
+
+  logOut(): void {
+    this.authService.logout();
+    console.log('Log out');
+  }
 }
